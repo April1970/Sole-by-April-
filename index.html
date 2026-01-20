@@ -8,113 +8,68 @@
 <style>
 * { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-}
+body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
 
 header {
-  background: black;
-  color: gold;
-  padding: 18px;
-  text-align: center;
-  font-size: 1.9em;
-  font-weight: bold;
+  background: black; color: gold; padding: 18px;
+  text-align: center; font-size: 1.9em; font-weight: bold;
 }
 
 .hero {
-  text-align: center;
-  padding: 25px;
-  background: #f7f7f7;
+  text-align: center; padding: 25px; background: #f7f7f7;
 }
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
   gap: 20px;
   padding: 20px;
 }
 
 .product-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
+  border: 1px solid #ddd; border-radius: 10px;
+  padding: 15px; text-align: center;
 }
 
 .product-card img {
-  width: 100%;
-  border-radius: 8px;
+  width: 100%; border-radius: 8px;
 }
 
-.product-name {
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.product-price {
-  color: gold;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
+.product-name { font-weight: bold; margin-top: 10px; }
+.product-price { color: gold; font-weight: bold; font-size: 1.2em; }
 .btn {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: black;
-  color: gold;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
+  margin-top: 10px; padding: 10px 20px; background: black; color: gold;
+  border: none; border-radius: 25px; font-weight: bold; cursor: pointer;
 }
 
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 95%;
-  max-width: 420px;
-  text-align: center;
-}
-
-.bank-box {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
-  font-size: 0.95em;
-}
-
-.whatsapp-btn {
-  background: #25D366;
-  color: white;
-  padding: 12px;
-  border-radius: 25px;
-  display: block;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 10px;
+.trust {
+  background: #f9f9f9; padding: 20px; text-align: center;
 }
 
 footer {
-  background: black;
-  color: gold;
-  text-align: center;
-  padding: 15px;
+  background: black; color: gold; text-align: center; padding: 15px;
 }
+
+.modal {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  justify-content: center; align-items: center; z-index: 1000;
+}
+
+.modal-content {
+  background: white; padding: 20px; border-radius: 10px;
+  width: 95%; max-width: 420px;
+}
+
+.bank-box {
+  background: #f1f1f1; padding: 15px; border-radius: 8px; margin: 10px 0;
+}
+
+.whatsapp-btn {
+  background: #25D366; color: white; padding: 12px; border-radius: 25px;
+  display: block; text-decoration: none; font-weight: bold; margin-top: 10px;
+}
+
+input, select { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
 </style>
 </head>
 
@@ -123,37 +78,51 @@ footer {
 <header>Sole by April</header>
 
 <section class="hero">
-  <h2>Step in Style</h2>
-  <p>Pay by bank transfer & send receipt on WhatsApp</p>
+  <h2>Step in Style 👟</h2>
+  <p>Pay via bank transfer & send receipt on WhatsApp</p>
 </section>
 
 <section class="products">
+  <!-- PRODUCT 1 -->
   <div class="product-card">
     <img src="https://i.imgur.com/eh97HcZ.jpg">
     <div class="product-name">Desert King</div>
     <div class="product-price">₦18,500</div>
-    <button class="btn add-to-cart" data-name="Desert King" data-price="₦18,500">Buy Now</button>
+    <button class="btn buy" data-name="Desert King" data-price="₦18,500">Buy Now</button>
+  </div>
+
+  <!-- PRODUCT 2 -->
+  <div class="product-card">
+    <img src="https://i.imgur.com/Qp1Z5Xc.jpg">
+    <div class="product-name">Urban Flex</div>
+    <div class="product-price">₦22,000</div>
+    <button class="btn buy" data-name="Urban Flex" data-price="₦22,000">Buy Now</button>
   </div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="paymentModal">
+<section class="trust">
+  <h3>Why Shop With Us?</h3>
+  <p>✔ 100% Legit Business</p>
+  <p>✔ Fast Nationwide Delivery</p>
+  <p>✔ Quality Guaranteed</p>
+  <p>✔ Pay & Send Receipt on WhatsApp</p>
+</section>
+
+<div class="modal" id="modal">
   <div class="modal-content">
-    <h3 id="productTitle"></h3>
-    <p id="productPrice"></p>
+    <h3 id="pName"></h3>
+    <p id="pPrice"></p>
 
     <div class="bank-box">
-      <strong>Pay via Bank Transfer</strong><br><br>
-      Bank: <strong>OPay</strong><br>
-      Account Name: <strong>Eseghalogho Osariemen Success</strong><br>
-      Account Number: <strong>9153504465</strong><br><br>
-      After payment, please send your receipt on WhatsApp.
+      <strong>Bank Transfer Details</strong><br><br>
+      Bank: <b>OPay</b><br>
+      Account Name: <b>Eseghalogho Osariemen Success</b><br>
+      Account Number: <b>9153504465</b>
     </div>
 
-    <a id="whatsappLink" class="whatsapp-btn" target="_blank">
-      Send Receipt on WhatsApp
-    </a>
+    <input id="location" placeholder="Delivery Location (e.g., Ikeja)">
 
+    <a id="waLink" class="whatsapp-btn" target="_blank">Send Receipt on WhatsApp</a>
     <button class="btn" onclick="closeModal()">Close</button>
   </div>
 </div>
@@ -163,45 +132,44 @@ footer {
 </footer>
 
 <script>
-const modal = document.getElementById("paymentModal");
-const productTitle = document.getElementById("productTitle");
-const productPrice = document.getElementById("productPrice");
-const whatsappLink = document.getElementById("whatsappLink");
+const modal = document.getElementById("modal");
+const pName = document.getElementById("pName");
+const pPrice = document.getElementById("pPrice");
+const waLink = document.getElementById("waLink");
+const locationInput = document.getElementById("location");
 
-document.querySelectorAll(".add-to-cart").forEach(btn => {
-  btn.addEventListener("click", () => {
+document.querySelectorAll(".buy").forEach(btn => {
+  btn.onclick = () => {
+    const orderId = "SBA" + Math.floor(Math.random() * 100000);
     const name = btn.dataset.name;
     const price = btn.dataset.price;
 
-    productTitle.textContent = name;
-    productPrice.textContent = price;
+    pName.textContent = name;
+    pPrice.textContent = price;
 
-    const message = `
-Hello Sole by April 👋
-I have made payment for:
+    waLink.onclick = () => {
+      const loc = locationInput.value || "Not specified";
+      const msg =
+`Hello Sole by April 👋
 
+Order ID: ${orderId}
 Product: ${name}
 Price: ${price}
+Delivery Location: ${loc}
 
-Please find my payment receipt attached.
-    `;
+I have made payment. Please see my receipt attached.`;
 
-    whatsappLink.href =
-      "https://wa.me/2348122757915?text=" +
-      encodeURIComponent(message);
+      waLink.href =
+        "https://wa.me/2348122757915?text=" + encodeURIComponent(msg);
+    };
 
     modal.style.display = "flex";
-  });
+  };
 });
 
-function closeModal() {
-  modal.style.display = "none";
-}
-
-window.onclick = e => {
-  if (e.target === modal) closeModal();
-};
+function closeModal() { modal.style.display = "none"; }
+window.onclick = e => { if(e.target===modal) closeModal(); };
 </script>
 
 </body>
-  </html>
+</html>
